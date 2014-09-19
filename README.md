@@ -5,8 +5,8 @@
 
 二、使用方法
 ============
-1、将头文件拷贝到工程目录下
-2、include VisualTree.h InfoH.h
+1、将头文件拷贝到工程目录下<br>
+2、include VisualTree.h InfoH.h<br>
 3、使树节点继承class Info
 3、实例化一个VisualTree对象
 4、调用VisualTree::draw()输出二叉树
