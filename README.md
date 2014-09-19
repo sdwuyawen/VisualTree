@@ -2,7 +2,7 @@
 ==================
 
 我为了方便调试二叉树而写的一个小程序，可以在终端中以图形化的形式输出一个二叉树。<br>
-![image](https://github.com/sduzh/VisualTree/tree/other/pictures)
+![](https://github.com/sduzh/VisualTree/tree/other/pictures/tree.png)
 
 二、使用方法
 ============
