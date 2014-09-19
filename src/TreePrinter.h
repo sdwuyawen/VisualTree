@@ -1,0 +1,105 @@
+#ifndef TREE_PRINTER_H
+#define TREE_PRINTER_H
+
+template<class T> bool is_int(T) { return false; }
+template<>        bool is_int(int) { return true; }
+
+template<class T> bool is_char(T) { return false;}
+template<>        bool is_char(char) { return true; }
+
+template<class T> bool is_string(T) { return false; }
+template<>        bool is_string(char*) { return true; }
+
+template<class TreeNode, class ValueType>
+class TreePrinter
+{
+public:
+    typedef TreeNode *TreeNode::*PtrToMember;
+	typedef ValueType TreeNode::*PtrToData;
+
+    TreePrinter(PtrToMember p, PtrToMember l, PtrToMember r, PtrToData d) : 
+        edge_len(2), num_out(0), vec(), parent(p), left(l), right(r), value(d)
+    {
+    }
+
+    void set_edge_length(int len) 
+	{
+        edge_len = std::max(len, 2); // 边沿最小宽度为2
+    }
+
+    void operator() (TreeNode *node) 
+	{
+		assert(node);
+        TreeNode *lc = node->*left;    
+        TreeNode *rc = node->*right;   
+        int      lbl = 0, rbl = 0;  // 左边沿字符长度，右边沿字符长度 
+        int      spaces = node->pos * edge_len - num_out; // 占位空白字符数
+
+        if (lc) { lbl = edge_len * (node->pos-(node->*left)->pos) - 1; }
+        if (rc) { rbl = edge_len * ((node->*right)->pos-node->pos) - 1; }
+        
+        spaces -= lbl;
+        assert(spaces >= 0);
+
+        while (spaces--) { 
+			num_out += printf(" "); 
+		}
+		
+		if (node->*left) { 
+			vec.push_back(num_out-1);
+			while (lbl--) {  
+				num_out += printf("_");
+			}
+		}
+        
+		if (is_int(node->*value)) { 
+			num_out += printf("(%d)", node->*value); 
+		} else if (is_char(node->*value)) {
+			num_out += printf("(%c)", node->*value);
+		} else {
+			fprintf(stderr, "Can not print this type of value\n");
+			return;
+		}
+
+		if (node->*right) {
+			while (rbl--) {
+				num_out += printf("_"); 
+			}
+			vec.push_back(num_out); 
+		}
+
+		if (node->newline) { 
+			new_line();
+		}
+    }
+
+private:
+	void new_line() 
+	{
+	     printf("\n");
+         if (!vec.empty()) {
+             int n = 0, end = vec[vec.size()-1];
+             for (int i = 0; i <= end && n < (int)vec.size(); ++i) {
+                 if (i == vec[n]) {
+                     printf("|");
+                     n++;
+                 } else {
+                     printf(" ");
+                 }
+             }
+         }
+         printf("\n");
+         num_out = 0;
+         vec.clear();
+	}
+
+    int					  edge_len;
+    int					  num_out;   // 已输出字符数
+    std::vector<int>	  vec;
+    PtrToMember			  parent;
+    PtrToMember			  left;
+    PtrToMember           right;
+	ValueType TreeNode:: *value;
+};
+
+#endif // TREE_PRINTER_H
