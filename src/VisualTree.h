@@ -20,7 +20,7 @@ class VisualTree
 {
 public:
     typedef TreeNode *TreeNode::*           PtrToMember;
-	typedef ValueType TreeNode::*           PtrToData;
+    typedef ValueType TreeNode::*           PtrToData;
 
     VisualTree(PtrToMember p, PtrToMember lc, PtrToMember rc, PtrToData val);
     
@@ -30,8 +30,8 @@ private:
     void                     adjust_pos(TreeNode *root);
     TreeNode*                ancestor(TreeNode *node);
     int                      digits(int n);
-	int                      digits(char c);
-	int                      digits(const char*s);
+    int                      digits(char c);
+    int                      digits(const char*s);
     IntExtremumPair          extreme_pos(TreeNode *p);
     ExtremumGetter<TreeNode> extreme_node(TreeNode *root);
     int                      scan_tree(TreeNode *root); 
@@ -42,7 +42,7 @@ private:
     TreePrinter<TreeNode, ValueType> printer;
     PosSetter<TreeNode>      setter;
     PtrToMember              parent, left, right;
-	ValueType TreeNode::    *value;
+    ValueType TreeNode::    *value;
 };
 
 /*
@@ -64,26 +64,26 @@ void VisualTree<TreeNode, ValueType>::adjust_pos(TreeNode *root)
         return;
     }
 
-	int diff = 0;
+    int diff = 0;
     IntExtremumPair extr;
     if (root->*left) {
         extr = extreme_pos(root->*left);
         if (root->pos <= extr.max) { // 左子树越界:将根节点右移及其右子树右移
             diff = extr.max - root->pos + 1; 
-			PosAdder adder(diff);
+            PosAdder adder(diff);
             root->add_pos(diff);
             traverse_level(root->*right, adder);
-			adjust_pos(ancestor(root));
+            adjust_pos(ancestor(root));
         }
     } 
 
     if (root->*right) { // 右子树越界：将右字树右移
         extr = extreme_pos(root->*right);
         if (extr.min <= root->pos) {
-			diff = root->pos - extr.min + 1;
+            diff = root->pos - extr.min + 1;
             PosAdder adder(diff);
             traverse_level(root->*right, adder);
-			adjust_pos(ancestor(root));
+            adjust_pos(ancestor(root));
         }
     }
 }
@@ -131,7 +131,7 @@ int VisualTree<TreeNode, ValueType>::digits(int n)
 template<class TreeNode, class ValueType>
 int VisualTree<TreeNode, ValueType>::digits(char c) 
 {
-	return 1;
+    return 1;
 }
 
 
@@ -142,7 +142,7 @@ int VisualTree<TreeNode, ValueType>::digits(char c)
 template<class TreeNode, class ValueType>
 int VisualTree<TreeNode, ValueType>::digits(const char *s)
 {
-	return strlen(s);	
+    return strlen(s);   
 }
 
 /*
@@ -152,14 +152,14 @@ int VisualTree<TreeNode, ValueType>::digits(const char *s)
 template<class TreeNode, class ValueType>
 void VisualTree<TreeNode, ValueType>::draw(TreeNode *root, const char *promot)
 {   
-	if (promot) { 
+    if (promot) { 
         printf("%s\n", promot);
     } 
 
-	if (root == NULL) {
-		printf("Empty tree!\n");
-		return;
-	}
+    if (root == NULL) {
+        printf("Empty tree!\n");
+        return;
+    }
 
     int len = scan_tree(root);
 
@@ -202,12 +202,12 @@ template<class TreeNode, class ValueType>
 int VisualTree<TreeNode, ValueType>::scan_tree(TreeNode *root)
 {
     int                    cnt;     // 当前深度已扫描节点个数
-	int                    depth;   // 当前扫描深度
-	int                    max_len; 
+    int                    depth;   // 当前扫描深度
+    int                    max_len; 
     std::queue<TreeNode*>  qnode;
     std::vector<int>       num_node;  // num_node[i]:  深度为i的节点总数
     
-	num_node.push_back(1); // 一个根节点
+    num_node.push_back(1); // 一个根节点
     num_node.push_back(0); // 初始化第1层
     qnode.push(root);
 
