@@ -134,7 +134,7 @@ int VisualTree<TreeNode, ValueType>::digits(char c)
 }
 
 template<class TreeNode, class ValueType>
-int VisualTree<TreeNode>, ValueType>::digits(const char *s)
+int VisualTree<TreeNode, ValueType>::digits(const char *s)
 {
 	return strlen(s);	
 }
