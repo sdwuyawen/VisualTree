@@ -14,7 +14,7 @@ public:
     
     // 根据节点node的父节点位置设置node的位置
     void operator() (TreeNode *node) 
-	{
+    {
         TreeNode *p = node->*parent;
         if (p != NULL) {
             if (node == p->*left)  { node->pos = p->pos - 1; }
