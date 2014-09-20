@@ -17,11 +17,19 @@
 1、二叉树节点所包含的数据类型为int/char/char*; <br>
 2、节点的父结点指针和左右孩子指针的访问权限为public; <br>
 
-四、VisualTree的初始化方法
+四、Constructor
 ===========================
-待写
+		/*
+		 * 构造函数
+		 * @params p : 树结点中父指针的偏移量（Pointer to Data Member类型）
+		 *         lc: 树结点中左孩子指针偏移量（类型同上）
+		 *         rc: 树结点中右孩子指针偏移量（类型同上）
+		 *         value: 树结点中数据量的偏移量（类型同上）
+		 */
+		 template<class TreeNode, class ValueType>
+		 VisualTree::VisualTree(TreeNode *TreeNode::*p, TreeNode *TreeNode::*lc,
+								TreeNode *TreeNode::*rc, ValueType TreeNode::*value)
+		 {
+			 // ...
+		 }  
 
-
-四、例子
-========
-待写
