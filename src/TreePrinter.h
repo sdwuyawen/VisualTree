@@ -1,15 +1,6 @@
 #ifndef TREE_PRINTER_H
 #define TREE_PRINTER_H
 
-template<class T> bool is_int(T) { return false; }
-template<>        bool is_int(int) { return true; }
-
-template<class T> bool is_char(T) { return false;}
-template<>        bool is_char(char) { return true; }
-
-template<class T> bool is_string(T) { return false; }
-template<>        bool is_string(char*) { return true; }
-
 template<class TreeNode, class ValueType>
 class TreePrinter
 {
@@ -67,17 +58,9 @@ public:
     }
 
 private:
-	int out_value(char c) {
-		return printf("%c", c);
-	}
-
-	int out_value(int i) {
-		return printf("%d", i);
-	}
-
-	int out_value(const char *p) {
-		return printf("%s",p);
-	}
+	int out_value(char c)        { return printf("%c", c); }
+	int out_value(int i)         { return printf("%d", i); }
+	int out_value(const char *p) { return printf("%s", p); }
 
 	void new_line() 
 	{
