@@ -31,6 +31,7 @@ private:
     TreeNode*                ancestor(TreeNode *node);
     int                      digits(int n);
 	int                      digits(char c);
+	int                      digits(const char*s);
     IntExtremumPair          extreme_pos(TreeNode *p);
     ExtremumGetter<TreeNode> extreme_node(TreeNode *root);
     int                      scan_tree(TreeNode *root); 
