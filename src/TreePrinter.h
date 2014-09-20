@@ -52,15 +52,8 @@ public:
 			}
 		}
         
-		if (is_int(node->*value)) { 
-			num_out += printf("(%d)", node->*value); 
-		} else if (is_char(node->*value)) {
-			num_out += printf("(%c)", node->*value);
-		} else {
-			fprintf(stderr, "Can not print this type of value\n");
-			return;
-		}
-
+		num_out += out_value(node->*value);
+				
 		if (node->*right) {
 			while (rbl--) {
 				num_out += printf("_"); 
@@ -74,6 +67,18 @@ public:
     }
 
 private:
+	int out_value(char c) {
+		return printf("%c", c);
+	}
+
+	int out_value(int i) {
+		return printf("%d", i);
+	}
+
+	int out_value(char *p) {
+		return printf("%s",p);
+	}
+
 	void new_line() 
 	{
 	     printf("\n");
