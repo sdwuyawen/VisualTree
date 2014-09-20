@@ -75,7 +75,7 @@ private:
 		return printf("%d", i);
 	}
 
-	int out_value(char *p) {
+	int out_value(const char *p) {
 		return printf("%s",p);
 	}
 
