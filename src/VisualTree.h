@@ -134,6 +134,11 @@ int VisualTree<TreeNode, ValueType>::digits(char c)
 	return 1;
 }
 
+
+/*
+ * 输出一个字符串所占用的字符数
+ * @return 字符串长度
+ */
 template<class TreeNode, class ValueType>
 int VisualTree<TreeNode, ValueType>::digits(const char *s)
 {
