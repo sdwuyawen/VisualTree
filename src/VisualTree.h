@@ -1,6 +1,7 @@
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
 #include <iostream>
 #include <queue>
 #include "ExtremumGetter.h"
@@ -130,6 +131,12 @@ template<class TreeNode, class ValueType>
 int VisualTree<TreeNode, ValueType>::digits(char c) 
 {
 	return 1;
+}
+
+template<class TreeNode, class ValueType>
+int VisualTree<TreeNode>, ValueType>::digits(const char *s)
+{
+	return strlen(s);	
 }
 
 /*
